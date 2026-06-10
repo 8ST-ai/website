@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="8ST - private analytics platform for systematic digital-asset research.">
+<title>8ST.AI</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='white'/><text x='50' y='72' font-size='64' font-family='Arial,sans-serif' font-weight='bold' fill='%232b4590' text-anchor='middle'>8</text></svg>">
+<style>
+  :root {
+    --navy: #2b4590;
+    --navy-deep: #1d2f63;
+    --navy-ink: #16244c;
+    --gold: #b3955c;
+    --gold-deep: #9a7d45;
+    --paper: #ffffff;
+    --paper-soft: #f6f7fa;
+    --ink-dim: #5c6678;
+    --hairline: rgba(179, 149, 92, 0.45);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--paper);
+    color: var(--navy-ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: var(--paper);
+    border-bottom: 2px solid var(--hairline);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand img { height: 46px; width: auto; display: block; }
+  .signin-btn {
+    background: var(--navy);
+    border: 1px solid var(--navy);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 11px 26px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .signin-btn:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 84px 24px 72px;
+    background: var(--paper);
+  }
+  .hero img { max-height: 220px; width: auto; margin-bottom: 38px; }
+  .rule {
+    width: 72px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 32px;
+  }
+  .tagline {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(22px, 3.2vw, 30px);
+    font-weight: 400;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+    max-width: 640px;
+    line-height: 1.45;
+  }
+  .subline {
+    margin-top: 22px;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+
+  /* ---------- navy pillars band ---------- */
+  .pillars {
+    background: var(--navy);
+    padding: 54px 24px;
+  }
+  .pillars-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    text-align: center;
+  }
+  .pillar h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .pillar p {
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  /* ---------- team ---------- */
+  .team {
+    background: var(--paper-soft);
+    padding: 70px 24px 78px;
+    text-align: center;
+  }
+  .team h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: clamp(26px, 3.4vw, 34px);
+    color: var(--navy);
+    letter-spacing: 0.03em;
+    margin-bottom: 12px;
+  }
+  .team .team-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-dim);
+    margin-bottom: 48px;
+  }
+  .team-grid {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .member .portrait {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    background: #e9ebf1;
+    overflow: hidden;
+  }
+  .member .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(100%);
+  }
+  .member h4 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin-bottom: 5px;
+  }
+  .member span {
+    display: block;
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    background: var(--navy-deep);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.06em;
+  }
+  footer .gold { color: var(--gold); }
+
+  /* ---------- invite-only dialog ---------- */
+  dialog {
+    background: var(--paper);
+    color: var(--navy-ink);
+    border: none;
+    border-top: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 42px 46px;
+    max-width: 430px;
+    width: calc(100% - 48px);
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(22, 36, 76, 0.35);
+  }
+  dialog::backdrop { background: rgba(22, 36, 76, 0.55); }
+  dialog h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+  dialog p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin-bottom: 28px;
+  }
+  .close-btn {
+    background: var(--navy);
+    border: 1px solid var(--navy);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .close-btn:hover { background: var(--navy-deep); }
+
+  @media (max-width: 860px) {
+    .pillars-inner { grid-template-columns: 1fr; gap: 28px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 20px; }
+  }
+  @media (max-width: 560px) {
+    header, footer { padding-left: 22px; padding-right: 22px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .hero { padding-top: 56px; }
+    .hero img { max-height: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="Graphics/8ST%20Logo.png" alt="8ST.AI">
+  </div>
+  <button class="signin-btn" onclick="document.getElementById('gate').showModal()">Sign in</button>
+</header>
+
+<section class="hero">
+  <img src="Graphics/8ST%20Logo.png" alt="8ST.AI">
+  <div class="rule"></div>
+  <p class="tagline">A private analytics platform for systematic digital-asset research.</p>
+  <p class="subline">Research &middot; Analytics &middot; Execution</p>
+</section>
+
+<section class="pillars">
+  <div class="pillars-inner">
+    <div class="pillar">
+      <h3>Research</h3>
+      <p>Signal engines scored across hundreds of digital-asset markets, validated against years of historical data before a single dollar moves.</p>
+    </div>
+    <div class="pillar">
+      <h3>Analytics</h3>
+      <p>Every figure traced to the code that produced it. Performance, risk, and attribution reported with audit-grade provenance.</p>
+    </div>
+    <div class="pillar">
+      <h3>Execution</h3>
+      <p>Disciplined, rules-based order management with hard risk limits enforced at every layer of the stack.</p>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <h2>The Intelligence Desk</h2>
+  <p class="team-sub">Four agents. One book. No days off.</p>
+  <div class="team-grid">
+    <div class="member">
+      <div class="portrait"><img src="Graphics/Stooges%20Photos/Larry.jpg" alt="Larry"></div>
+      <h4>Larry</h4>
+      <span>Signal Intelligence</span>
+    </div>
+    <div class="member">
+      <div class="portrait"><img src="Graphics/Stooges%20Photos/Moe.jpg" alt="Moe"></div>
+      <h4>Moe</h4>
+      <span>Risk Management</span>
+    </div>
+    <div class="member">
+      <div class="portrait"><img src="Graphics/Stooges%20Photos/Curly.jpg" alt="Curly"></div>
+      <h4>Curly</h4>
+      <span>Execution</span>
+    </div>
+    <div class="member">
+      <div class="portrait"><img src="Graphics/Stooges%20Photos/Shemp_Howard-cutout.png" alt="Shemp"></div>
+      <h4>Shemp</h4>
+      <span>Infrastructure &amp; Data</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 <span class="gold">8ST.AI</span> &middot; All rights reserved.</span>
+  <span>Private platform &middot; Access by invitation</span>
+</footer>
+
+<dialog id="gate">
+  <h2>Access is invite-only</h2>
+  <p>8ST is a private platform. Member access is provisioned directly by the team. If you have an account, sign in from your team workspace.</p>
+  <button class="close-btn" onclick="document.getElementById('gate').close()">Close</button>
+</dialog>
+
+</body>
+</html>
