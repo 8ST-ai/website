@@ -3,30 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="8ST - private analytics platform for systematic digital-asset research.">
+<meta name="description" content="8ST - private analytics platform for systematic digital-asset trading.">
 <title>8ST.AI</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='white'/><text x='50' y='72' font-size='64' font-family='Arial,sans-serif' font-weight='bold' fill='%232b4590' text-anchor='middle'>8</text></svg>">
+<link rel="icon" type="image/png" sizes="256x256" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #2b4590;
-    --navy-deep: #1d2f63;
-    --navy-ink: #16244c;
-    --gold: #b3955c;
-    --gold-deep: #9a7d45;
-    --paper: #6b7280;
-    --paper-soft: #79828f;
-    --ink-dim: #e6e9ee;
-    --hairline: rgba(179, 149, 92, 0.45);
+    --navy-light: #3f5fb0;
+    --navy-deep: #16244c;
+    --gold: #c8a96b;
+    --gold-soft: #ddc38c;
+    --text: #eef1f7;
+    --text-dim: rgba(238, 241, 247, 0.70);
+    --hairline: rgba(200, 169, 107, 0.40);
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-line: rgba(255, 255, 255, 0.10);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+  html { min-height: 100%; }
   body {
-    background: var(--paper);
-    color: var(--navy-ink);
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text);
     -webkit-font-smoothing: antialiased;
     display: flex;
     flex-direction: column;
+    background:
+      radial-gradient(1100px 720px at 50% -6%, rgba(80, 116, 200, 0.45), transparent 62%),
+      linear-gradient(168deg, #2a3e6b 0%, #1c2c54 48%, #121d3d 100%) no-repeat;
+    background-size: 100% 100%;
   }
 
   /* ---------- header ---------- */
@@ -34,25 +43,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 48px;
-    background: var(--paper);
-    border-bottom: 2px solid var(--hairline);
+    padding: 18px clamp(22px, 5vw, 56px);
+    background: rgba(16, 25, 52, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--glass-line);
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
-  .brand { display: flex; align-items: center; gap: 14px; }
-  .brand img { height: 46px; width: auto; display: block; }
-  .signin-btn {
-    background: var(--navy);
-    border: 1px solid var(--navy);
-    color: #fff;
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 11px 26px;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-  .signin-btn:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
+  .brand { display: flex; align-items: center; }
+  .brand img { height: 42px; width: auto; display: block; }
 
   /* ---------- hero ---------- */
   .hero {
@@ -61,96 +62,130 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 84px 24px 72px;
-    background: var(--paper);
+    padding: clamp(66px, 10vw, 116px) 24px 84px;
   }
-  .hero img { max-height: 220px; width: auto; margin-bottom: 38px; }
+  .hero img {
+    max-height: 230px;
+    width: auto;
+    margin-bottom: 34px;
+    filter: drop-shadow(0 12px 44px rgba(63, 95, 176, 0.42));
+  }
   .rule {
-    width: 72px;
+    width: 76px;
     height: 2px;
-    background: var(--gold);
-    margin: 0 auto 32px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 30px;
   }
   .tagline {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(22px, 3.2vw, 30px);
-    font-weight: 400;
-    color: #f4f5f8;
-    letter-spacing: 0.01em;
-    max-width: 640px;
-    line-height: 1.45;
+    font-weight: 300;
+    font-size: clamp(22px, 3.4vw, 33px);
+    line-height: 1.46;
+    letter-spacing: 0.004em;
+    color: #ffffff;
+    max-width: 660px;
   }
   .subline {
     margin-top: 22px;
     font-size: 12px;
-    letter-spacing: 0.32em;
+    font-weight: 500;
+    letter-spacing: 0.34em;
     text-transform: uppercase;
-    color: #d9c189;
+    color: var(--gold-soft);
   }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 40px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    letter-spacing: 0.05em;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--navy-light), var(--navy));
+    padding: 14px 34px;
+    border-radius: 999px;
+    box-shadow: 0 10px 28px rgba(43, 69, 144, 0.45);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  }
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.10);
+    box-shadow: 0 14px 36px rgba(43, 69, 144, 0.60);
+  }
+  .hero-cta .arrow { transition: transform 0.18s ease; }
+  .hero-cta:hover .arrow { transform: translateX(4px); }
 
-  /* ---------- navy pillars band ---------- */
-  .pillars {
-    background: var(--navy);
-    padding: 54px 24px;
-  }
+  /* ---------- pillars ---------- */
+  .pillars { padding: clamp(38px, 7vw, 66px) 24px; }
   .pillars-inner {
-    max-width: 980px;
+    max-width: 1000px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 36px;
-    text-align: center;
+    gap: 22px;
+  }
+  .pillar {
+    background: var(--glass);
+    border: 1px solid var(--glass-line);
+    border-radius: 16px;
+    padding: 30px 28px;
+    text-align: left;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    border-color: var(--hairline);
+    background: rgba(255, 255, 255, 0.07);
   }
   .pillar h3 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 500;
-    font-size: 19px;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.01em;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: 11px;
   }
   .pillar p {
-    font-size: 13.5px;
     font-weight: 300;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.82);
+    font-size: 13.5px;
+    line-height: 1.66;
+    color: var(--text-dim);
   }
 
   /* ---------- team ---------- */
-  .team {
-    background: var(--paper-soft);
-    padding: 70px 24px 78px;
-    text-align: center;
-  }
+  .team { padding: clamp(48px, 8vw, 82px) 24px; text-align: center; }
   .team h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 500;
-    font-size: clamp(26px, 3.4vw, 34px);
-    color: #f4f5f8;
-    letter-spacing: 0.03em;
+    font-weight: 600;
+    font-size: clamp(26px, 3.6vw, 34px);
+    color: #ffffff;
+    letter-spacing: 0.01em;
     margin-bottom: 12px;
   }
   .team .team-sub {
-    font-size: 14px;
     font-weight: 300;
-    color: var(--ink-dim);
-    margin-bottom: 48px;
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 46px;
   }
   .team-grid {
-    max-width: 980px;
+    max-width: 1000px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 30px;
   }
   .member .portrait {
     width: 150px;
     height: 150px;
     margin: 0 auto 18px;
     border-radius: 50%;
-    border: 3px solid var(--gold);
+    border: 2px solid var(--gold);
     background: #dde1e9;
     overflow: hidden;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.32);
   }
   .member .portrait img {
     width: 100%;
@@ -158,88 +193,50 @@
     object-fit: cover;
     object-position: top center;
     filter: grayscale(100%);
+    transition: filter 0.3s ease;
   }
+  .member:hover .portrait img { filter: grayscale(0%); }
   .member h4 {
-    font-family: Georgia, "Times New Roman", serif;
     font-weight: 600;
     font-size: 18px;
-    color: #f4f5f8;
-    letter-spacing: 0.04em;
+    color: #ffffff;
+    letter-spacing: 0.02em;
     margin-bottom: 5px;
   }
   .member span {
     display: block;
-    font-size: 11.5px;
+    font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #d9c189;
+    color: var(--gold-soft);
   }
 
   /* ---------- footer ---------- */
   footer {
-    background: var(--navy-deep);
-    padding: 24px 48px;
+    margin-top: auto;
+    padding: 24px clamp(22px, 5vw, 56px);
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.75);
-    letter-spacing: 0.06em;
-  }
-  footer .gold { color: var(--gold); }
-
-  /* ---------- invite-only dialog ---------- */
-  dialog {
-    background: var(--paper);
-    color: var(--navy-ink);
-    border: none;
-    border-top: 3px solid var(--gold);
-    border-radius: 4px;
-    padding: 42px 46px;
-    max-width: 430px;
-    width: calc(100% - 48px);
-    text-align: center;
-    box-shadow: 0 24px 64px rgba(22, 36, 76, 0.35);
-  }
-  dialog::backdrop { background: rgba(22, 36, 76, 0.55); }
-  dialog h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 500;
-    font-size: 23px;
-    color: #f4f5f8;
-    letter-spacing: 0.04em;
-    margin-bottom: 14px;
-  }
-  dialog p {
-    font-size: 14px;
     font-weight: 300;
-    line-height: 1.7;
-    color: var(--ink-dim);
-    margin-bottom: 28px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--glass-line);
+    background: rgba(15, 24, 52, 0.45);
   }
-  .close-btn {
-    background: var(--navy);
-    border: 1px solid var(--navy);
-    color: #fff;
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 10px 28px;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .close-btn:hover { background: var(--navy-deep); }
+  footer .gold { color: var(--gold); font-weight: 500; }
 
   @media (max-width: 860px) {
-    .pillars-inner { grid-template-columns: 1fr; gap: 28px; }
+    .pillars-inner { grid-template-columns: 1fr; gap: 16px; }
     .team-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 20px; }
   }
   @media (max-width: 560px) {
-    header, footer { padding-left: 22px; padding-right: 22px; }
+    header { padding-left: 20px; padding-right: 20px; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
-    .hero { padding-top: 56px; }
-    .hero img { max-height: 160px; }
+    .hero { padding-top: 54px; }
+    .hero img { max-height: 168px; }
   }
 </style>
 </head>
@@ -249,21 +246,21 @@
   <div class="brand">
     <img src="Graphics/8ST-Logo-New-Dark-small.png" alt="8ST.AI">
   </div>
-  <button class="signin-btn" onclick="document.getElementById('gate').showModal()">Sign in</button>
 </header>
 
 <section class="hero">
   <img src="Graphics/8ST-Logo-New-Dark.png" alt="8ST.AI">
   <div class="rule"></div>
-  <p class="tagline">A private analytics platform for systematic digital-asset research.</p>
+  <p class="tagline">A private analytics platform for systematic digital-asset trading.</p>
   <p class="subline">Research &middot; Analytics &middot; Execution</p>
+  <a class="hero-cta" href="https://moneyball.8st.ai">Enter the platform <span class="arrow">&rarr;</span></a>
 </section>
 
 <section class="pillars">
   <div class="pillars-inner">
     <div class="pillar">
       <h3>Research</h3>
-      <p>Signal engines scored across hundreds of digital-asset markets, validated against years of historical data before a single dollar moves.</p>
+      <p>Proprietary signal engines scored against hundreds of digital assets, validated against years of historical data before any position is opened.</p>
     </div>
     <div class="pillar">
       <h3>Analytics</h3>
@@ -277,8 +274,8 @@
 </section>
 
 <section class="team">
-  <h2>The Intelligence Desk</h2>
-  <p class="team-sub">Four agents. One book. No days off.</p>
+  <h2>The Trading Desk</h2>
+  <p class="team-sub">Four agents. One book. Always on. 24/7. No days off.</p>
   <div class="team-grid">
     <div class="member">
       <div class="portrait"><img src="Graphics/Stooges%20Photos/Larry.jpg" alt="Larry" style="object-position: calc(50% - 10px) 0;"></div>
@@ -307,12 +304,6 @@
   <span>&copy; 2026 <span class="gold">8ST.AI</span> &middot; All rights reserved.</span>
   <span>Private platform &middot; Access by invitation</span>
 </footer>
-
-<dialog id="gate">
-  <h2>Access is invite-only</h2>
-  <p>8ST is a private platform. Member access is provisioned directly by the team. If you have an account, sign in from your team workspace.</p>
-  <button class="close-btn" onclick="document.getElementById('gate').close()">Close</button>
-</dialog>
 
 </body>
 </html>
